@@ -167,7 +167,7 @@ int main(int argc, char *argv[])
 
     printf("%s turn!! ", player_name[turn]);
     printf("press any key to roll a die!\n");
-    scanf(" %c", &c);
+    scanf(" %d", &c);
     fflush(stdin);
     step = rolldie();
     
