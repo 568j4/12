@@ -12,7 +12,7 @@
 static int board_status[N_BOARD];
 static int board_coin[N_BOARD];
 
-static int board_sharkPosition;
+static int board_getsharkPosition;
 
 int board_initboard(void)
 {
@@ -22,6 +22,8 @@ int board_initboard(void)
 		board_status[i]=BOARDSTATUS_OK;
 		board_coin[i]=0;
 	}
+	
+	board_getsharkPosition = SHARK_INITPOS;
 	
 	for(i=0;i<N_COINPOS;i++)
 	{
@@ -76,13 +78,14 @@ int board_stepShark(void)
 {
 	int step=rand()%MAX_SHARKSTEP+1;
 	int i;
-	for (i=shark_position+1;i<=shark_position +step;i++)
+	for (i=+1;i<=board_getsharkPosition+step;i++)
 	{
-		board_status[i] = BOARDSTATUS_NOK;
+		if (i >= 0 && i < N_BOARD)
+           board_status[i] = BOARDSTATUS_NOK;
 	}
 	
-	shark_position += step;
+	board_getsharkPosition += step;
 	
-	return shark_position;
+	return board_getsharkPosition;
 }
-//int board_stepShark(void);
+
